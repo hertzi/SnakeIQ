@@ -88,6 +88,7 @@ class HighScoreDelegate extends Ui.BehaviorDelegate {
     function onNextPage() {
         view.page = (view.page + 1) % 3;
         Ui.requestUpdate();
+        return true;
     }
 
     function onPreviousPage() {
@@ -99,6 +100,7 @@ class HighScoreDelegate extends Ui.BehaviorDelegate {
         }
 
         Ui.requestUpdate();
+        return true;
     }
 
 }

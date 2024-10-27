@@ -94,9 +94,9 @@ class SnakeColorView extends ArenaView{
         }
     }
 
-    function drawPerimeter() {
-        return true;
-    }
+    // function drawPerimeter() {
+    //     return true;
+    // }
 
     function changeColor(val) {
         colorIndex = (colorIndex + val) % ($.crayon.colors.size());
@@ -132,13 +132,16 @@ class SnakecolorDelegate extends Ui.BehaviorDelegate {
     function onSelect() {
         view.setColor();
         Ui.popView(Ui.SLIDE_IMMEDIATE);
+        return true;
     }
 
     function onNextPage() {
         view.changeColor(1);
+        return true;
     }
     function onPreviousPage() {
         view.changeColor(-1);
+        return true;
     }
 
 }

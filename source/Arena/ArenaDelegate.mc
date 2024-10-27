@@ -6,7 +6,8 @@ class ArenaDelegateTactile extends Ui.BehaviorDelegate {
     var view;
     
     function initialize(view) {
-        UpDownWrapper.initialize();
+        BehaviorDelegate.initialize();
+        //UpDownWrapper.initialize();
         self.view = view;
     }
 
@@ -38,7 +39,7 @@ class ArenaDelegateTouch extends UpDownWrapper {
     var view;
     
     function initialize(view) {
-        UpDownWrapper.initialize();
+        UpDownWrapper.initialize(view);
         self.view = view;
     }
 
@@ -85,9 +86,11 @@ class ArenaDelegateTouch extends UpDownWrapper {
 }
 
 class UpDownWrapper extends Ui.BehaviorDelegate {
+    var view;
 	
-    function initialize() {
+    function initialize(view) {
 		BehaviorDelegate.initialize();
+        self.view = view;
     }
 
     function onSwipe(evt) {
@@ -115,6 +118,7 @@ class UpDownWrapper extends Ui.BehaviorDelegate {
         } else if (event == Ui.SWIPE_RIGHT) {
             view.snake.setDirection(-1);
         }
+        return true;
     }
 
     function onNorthSwipe(event) {
@@ -123,6 +127,7 @@ class UpDownWrapper extends Ui.BehaviorDelegate {
         } else if (event == Ui.SWIPE_RIGHT) {
             view.snake.setDirection(1);
         }
+        return true;
     }
 
     function onEastSwipe(event) {
@@ -131,6 +136,7 @@ class UpDownWrapper extends Ui.BehaviorDelegate {
         } else if (event == Ui.SWIPE_DOWN) {
             view.snake.setDirection(1);
         }
+        return true;
     }
 
     function onWestSwipe(event) {
@@ -139,6 +145,7 @@ class UpDownWrapper extends Ui.BehaviorDelegate {
         } else if (event == Ui.SWIPE_DOWN) {
             view.snake.setDirection(-1);
         }
+        return true;
     }
 
 
