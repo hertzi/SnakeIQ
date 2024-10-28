@@ -70,8 +70,7 @@ class ScoreStorage {
     function addScore(score) {
         var scores = [five, four, three, two, one];
         var insert = null;
-        var temp = five;
-        
+
         if (score > five) {
             for (var i = 0; i < scores.size(); i++) {
                 if (score > scores[i]) {
