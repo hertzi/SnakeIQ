@@ -2,7 +2,10 @@ using Toybox.WatchUi as Ui;
 using Toybox.Graphics as Gfx;
 using Toybox.System as Sys;
 using Toybox.Application as App;
+
 enum {expert, medium, easy}
+enum {button, touch}
+
 class ArenaView extends Ui.View {
     var arena;
     var snake; 
@@ -187,14 +190,16 @@ class ArenaView extends Ui.View {
 }
 
 function getArenaView() {
+    var control = App.getApp().getProperty("control");
     var isTouchScreen = Sys.getDeviceSettings().isTouchScreen;
     var delegate;
     var view = new ArenaView();
-    if (isTouchScreen) {
+    if (control == null && isTouchScreen || control == touch) {
         delegate = new ArenaDelegateTouch(view);
     } else {
         delegate = new ArenaDelegateTactile(view);
     }
+    
     Ui.pushView(
         view,
         delegate,

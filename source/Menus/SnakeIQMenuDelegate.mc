@@ -23,6 +23,9 @@ class SnakeIQMenuDelegate extends Ui.MenuInputDelegate {
 
     function getSettingsMenu() {
         var view = new Rez.Menus.SettingsMenu();
+        if(Sys.getDeviceSettings().isTouchScreen) {
+            view.addItem("Control", :control);
+        }
         var delegate = new SnakeIQSettingsDelegate(); 
         WatchUi.pushView(view, delegate, WatchUi.SLIDE_UP);
     }
@@ -51,6 +54,9 @@ class SnakeIQSettingsDelegate extends Ui.MenuInputDelegate {
 
         } else if (item == :difficulty) {
             getDifficultyMenu();
+
+        } else if (item == :control) {
+            getControlMenu();
         }
     }
 
@@ -104,6 +110,19 @@ function getDifficultyMenu() {
     Ui.pushView(
         menu,
         new DifficultySettingsDelegate(),
+        Ui.SLIDE_IMMEDIATE
+    );
+}
+
+function getControlMenu() {
+    var menu = new Ui.Menu();
+    menu.setTitle("Control");
+    menu.addItem("Button", :button); 
+    menu.addItem("TouchScreen", :touch); 
+
+    Ui.pushView(
+        menu,
+        new ControlSettingsDelegate(),
         Ui.SLIDE_IMMEDIATE
     );
 }
@@ -174,5 +193,22 @@ class DifficultySettingsDelegate extends Ui.MenuInputDelegate {
         } 
 
         App.getApp().setProperty("difficulty", difficulty);
+    }
+}
+
+class ControlSettingsDelegate extends Ui.MenuInputDelegate {
+    var control;
+    function initialize() {
+        MenuInputDelegate.initialize();
+        control = button;
+    }
+
+    function onMenuItem(item) {
+        if (item == :button) {
+            control = button;
+        } else if (item == :touch) {
+            control = touch;
+        } 
+        App.getApp().setProperty("control", control);
     }
 }

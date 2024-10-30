@@ -7,7 +7,6 @@ class ArenaDelegateTactile extends Ui.BehaviorDelegate {
     
     function initialize(view) {
         BehaviorDelegate.initialize();
-        //UpDownWrapper.initialize();
         self.view = view;
     }
 
@@ -35,11 +34,11 @@ class ArenaDelegateTactile extends Ui.BehaviorDelegate {
     
 }
 
-class ArenaDelegateTouch extends UpDownWrapper {
+class ArenaDelegateTouch extends  Ui.BehaviorDelegate {
     var view;
     
     function initialize(view) {
-        UpDownWrapper.initialize(view);
+		BehaviorDelegate.initialize();
         self.view = view;
     }
 
@@ -64,33 +63,6 @@ class ArenaDelegateTouch extends UpDownWrapper {
             onSouthSwipe(event);
         }
         return true;
-    }
-
-    //function onNextPage() {
-        //Sys.println("onNextPage()");
-        //view.snake.setDirection(1);
-        //return true;
-    //}
-
-    //function onPreviousPage() {
-        //Sys.println("onPreviousPage()");
-        //view.snake.setDirection(-1);
-        //return true;
-    //}
-    
-    /*function onBack() {
-        onPreviousPage();
-        return true;
-    }*/
-
-}
-
-class UpDownWrapper extends Ui.BehaviorDelegate {
-    var view;
-	
-    function initialize(view) {
-		BehaviorDelegate.initialize();
-        self.view = view;
     }
 
     function onSwipe(evt) {
@@ -148,38 +120,21 @@ class UpDownWrapper extends Ui.BehaviorDelegate {
         return true;
     }
 
+    //function onNextPage() {
+        //Sys.println("onNextPage()");
+        //view.snake.setDirection(1);
+        //return true;
+    //}
 
-
-	/*function onSwipe(evt) {
-        var event = evt.getDirection();
-        if (event == Ui.SWIPE_LEFT) {
-            
-            if (view.snake.getDirection() == North) {
-                return onPreviousPage();
-            } else {
-                return onNextPage();
-            }
-		
-        } else if (event == Ui.SWIPE_RIGHT) {
-			return onNextPage();
-		
-        } else if (event == Ui.SWIPE_UP) {
-            Sys.println("UP");
-            if (view.snake.getDirection() == East) {
-                return onNextPage();
-            } else {
-                return onPreviousPage();
-            }
-		} else if (event == Ui.SWIPE_DOWN) {
-            if (view.snake.getDirection() == East) {
-                return onPreviousPage();
-            } else {
-                return onNextPage();
-            }
-		} else {
-			return true;
-		}
-        
-	}*/
+    //function onPreviousPage() {
+        //Sys.println("onPreviousPage()");
+        //view.snake.setDirection(-1);
+        //return true;
+    //}
+    
+    /*function onBack() {
+        onPreviousPage();
+        return true;
+    }*/
 
 }
